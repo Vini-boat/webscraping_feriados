@@ -37,7 +37,7 @@ def get_cidades(estado:EstadoValido) -> List[str]:
 
 def get_urls_cidades(estado:EstadoValido) -> List[str]:
     return [element.get_attribute("href") for element in _get_elementos_cidades(estado)]
-
+ 
 @dataclass
 class Cidade:
     nome: str

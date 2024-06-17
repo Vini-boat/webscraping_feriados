@@ -1,7 +1,5 @@
-from functools import reduce
-from navegador import driver
-from navegador.calendario import _ENDPOINT as ENDPOINT, get_cidades_e_url
-from navegador.calendario import get_urls_cidades, EstadoValido, get_feriados_por_url
+from navegador.calendario import get_cidades_e_url
+from navegador.calendario import get_feriados_por_url
 
 
 
@@ -35,10 +33,7 @@ if __name__ == "__main__":
     for estado in ["rs","sc"]:
         cidades = get_cidades_e_url(estado)
         for cidade in cidades:
+            feriados = get_feriados_por_url(cidade.url)
+            print(cidade, f"{feriados=}")
             with open("feriados_2024.html", "a", encoding="utf-8") as file:
-                feriados = get_feriados_por_url(cidade.url)
-                print(cidade, f"{feriados=}")
                 file.write(f"{cidade.nome};{feriados}\n")
-
-    driver.quit()
-
